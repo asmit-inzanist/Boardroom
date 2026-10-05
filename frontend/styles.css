@@ -88,12 +88,18 @@ button:not(#hero-submit-btn):not(#docked-submit-btn):not(.suggestion-chip):not(.
   transform: translateY(0) scale(1);
 }
 
+.follow-up-dock {
+  width: min(100%, 48rem);
+  margin: 2rem auto 0;
+}
+
 .follow-up-messages {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-height: 14rem;
+  max-height: none;
   overflow-y: auto;
+  margin-bottom: 0.75rem;
 }
 
 .follow-up-message {
@@ -125,6 +131,20 @@ button:not(#hero-submit-btn):not(#docked-submit-btn):not(.suggestion-chip):not(.
   font-size: 0.85rem;
   line-height: 1.45;
   white-space: pre-wrap;
+}
+
+.follow-up-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border: 1px solid #2e3034;
+  border-radius: 999px;
+  background: rgba(23, 24, 26, 0.95);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
 
 .report-panel {
