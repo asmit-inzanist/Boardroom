@@ -1,0 +1,306 @@
+/* =============================================================
+   BOARDROOM — Investment Research Terminal
+   styles.css — Custom styles (on top of Tailwind CDN)
+   ============================================================= */
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    overscroll-behavior: none;
+  }
+  main > :first-child { margin-top: 0 !important; }
+  main > :last-child  { margin-bottom: 0 !important; }
+}
+
+/* Hide scrollbars globally */
+::-webkit-scrollbar { display: none; }
+
+/* ── CSS Custom Properties ────────────────────────────────── */
+:root {
+  --color-on-surface: #EDEBE6;
+  --on-surface: #EDEBE6;
+  --color-on-surface-variant: #9E9C96;
+}
+
+/* ── Base text colour ─────────────────────────────────────── */
+body,
+.text-on-surface {
+  color: #EDEBE6 !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+nav a,
+button:not(#hero-submit-btn):not(#docked-submit-btn):not(.suggestion-chip):not(.suggestion-chip *) {
+  color: #EDEBE6;
+}
+
+/* ── Brand Wordmark ───────────────────────────────────────── */
+.boardroom-brand {
+  font-family: 'Michroma', 'Syncopate', sans-serif !important;
+  letter-spacing: 0.15em !important;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* ── Suggestion Chips ─────────────────────────────────────── */
+.suggestion-chip {
+  background-color: #17181a !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #EDEBE6 !important;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px !important;
+  line-height: 1.25;
+  transition: all 0.15s ease-in-out;
+}
+
+.suggestion-chip:hover {
+  background-color: #212226 !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  transform: translateY(-1px);
+}
+
+/* ── Live report state ───────────────────────────────────── */
+.query-bubble {
+  position: fixed;
+  top: 5.5rem;
+  right: 2.5rem;
+  z-index: 45;
+  max-width: min(30rem, calc(100vw - 3rem));
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(226, 195, 153, 0.35);
+  border-radius: 1rem 1rem 0.25rem 1rem;
+  background: rgba(23, 24, 26, 0.82);
+  backdrop-filter: blur(18px);
+  color: var(--color-on-surface);
+  font: 500 0.8rem/1.35 'Inter', sans-serif;
+  opacity: 0;
+  transform: translateY(-0.75rem) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.query-bubble.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.report-panel {
+  width: 100%;
+  min-height: 22rem;
+  border: 1px solid rgba(226, 195, 153, 0.22);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(31, 32, 34, 0.78), rgba(17, 18, 20, 0.65));
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  overflow: hidden;
+}
+
+.report-content {
+  padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+.report-loading {
+  min-height: 20rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.report-loading__inner {
+  max-width: 32rem;
+}
+
+.report-loading__mark {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto 1.5rem;
+  border: 1px solid rgba(226, 195, 153, 0.28);
+  border-top-color: #e2c399;
+  border-radius: 50%;
+  animation: report-pulse 1.4s ease-in-out infinite;
+}
+
+.report-loading__status {
+  margin-top: 0.5rem;
+  color: #9e9c96;
+  font: 0.8rem/1.5 'JetBrains Mono', monospace;
+  transition: opacity 0.2s ease;
+}
+
+@keyframes report-pulse {
+  50% { transform: scale(1.12); opacity: 0.65; }
+}
+
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #2e3034;
+}
+
+.report-eyebrow, .report-label {
+  color: #7c7a75;
+  font: 0.68rem/1.3 'JetBrains Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.report-title {
+  margin: 0.35rem 0 0;
+  font: 500 clamp(1.4rem, 3vw, 2.2rem)/1.15 'Inter', sans-serif;
+}
+
+.report-score {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.report-score__value {
+  display: block;
+  margin-top: 0.25rem;
+  color: #e2c399;
+  font: 500 2rem/1 'JetBrains Mono', monospace;
+}
+
+.report-verdict {
+  display: inline-flex;
+  margin: 1.5rem 0 1rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid rgba(226, 195, 153, 0.35);
+  border-radius: 999px;
+  background: rgba(226, 195, 153, 0.1);
+  color: #e2c399;
+  font-weight: 600;
+}
+
+.report-section {
+  margin-top: 1.75rem;
+}
+
+.report-section h3 {
+  margin: 0 0 0.65rem;
+  color: #e2c399;
+  font: 500 0.75rem/1.3 'JetBrains Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.report-section p {
+  margin: 0;
+  color: #c8c6c0;
+  line-height: 1.7;
+}
+
+.recommendation-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #edebe6;
+}
+
+.recommendation-table th,
+.recommendation-table td {
+  padding: 0.85rem 0.65rem;
+  border-bottom: 1px solid #2e3034;
+  text-align: left;
+  vertical-align: top;
+}
+
+.recommendation-table th {
+  color: #7c7a75;
+  font: 0.68rem/1.3 'JetBrains Mono', monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.report-error {
+  min-height: 20rem;
+  display: grid;
+  place-content: center;
+  color: #ffb4ab;
+}
+
+.report-error p {
+  max-width: 38rem;
+  margin: 0.5rem 0 0;
+  color: #c8c6c0;
+}
+
+.static-dossier { display: none; }
+
+.report-grid,
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.report-subgroup {
+  grid-column: 1 / -1;
+}
+
+.report-card,
+.scenario-card {
+  padding: 1rem;
+  border: 1px solid #2e3034;
+  border-radius: 0.75rem;
+  background: rgba(23, 24, 26, 0.55);
+}
+
+.metric-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #c8c6c0;
+  font-size: 0.85rem;
+}
+
+.metric-table td {
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(46, 48, 52, 0.8);
+}
+
+.metric-table td:last-child {
+  color: #edebe6;
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.scenario-card h4 {
+  margin: 0 0 0.5rem;
+  color: #e2c399;
+  text-transform: uppercase;
+  font: 500 0.75rem/1.3 'JetBrains Mono', monospace;
+}
+
+.scenario-card p {
+  color: #c8c6c0;
+  line-height: 1.5;
+}
+
+.scenario-card ul,
+.risk-list {
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+  color: #c8c6c0;
+}
+
+.scenario-card li,
+.risk-list li {
+  margin-top: 0.35rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .query-bubble { right: 1rem; }
+  .report-header { flex-direction: column; }
+  .report-score { text-align: left; }
+  .recommendation-table { font-size: 0.85rem; }
+  .report-grid,
+  .scenario-grid { grid-template-columns: 1fr; }
+}
