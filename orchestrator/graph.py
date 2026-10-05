@@ -3,6 +3,7 @@ import operator
 from langgraph.graph import StateGraph, END
 from agents.synthesizer_agent import synthesize_report
 from data_layer.fetch_bundle import fetch_bundle
+from data_layer.cache import save_cache
 
 from agents.financial_agent import run_financials_agent
 from agents.business_model_agent import run_business_model_agent
@@ -66,6 +67,9 @@ def synthesizer_node(state: states) -> dict:
         state["agent_outputs"],
         state["disagreement_log"],
     )
+    cached_bundle = dict(state["data_bundle"])
+    cached_bundle["final_report"] = report
+    save_cache(state["ticker"], cached_bundle)
     return {"final_report": report}
 
 graph = StateGraph(states)

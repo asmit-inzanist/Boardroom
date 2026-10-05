@@ -88,6 +88,45 @@ button:not(#hero-submit-btn):not(#docked-submit-btn):not(.suggestion-chip):not(.
   transform: translateY(0) scale(1);
 }
 
+.follow-up-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 14rem;
+  overflow-y: auto;
+}
+
+.follow-up-message {
+  width: fit-content;
+  max-width: min(34rem, 90%);
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #2e3034;
+  border-radius: 0.85rem;
+  background: rgba(23, 24, 26, 0.96);
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.28);
+}
+
+.follow-up-message--user {
+  align-self: flex-end;
+  border-color: rgba(226, 195, 153, 0.3);
+}
+
+.follow-up-message__label {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: #e2c399;
+  font: 0.65rem/1.2 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+}
+
+.follow-up-message p {
+  margin: 0;
+  color: #c8c6c0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
 .report-panel {
   width: 100%;
   min-height: 22rem;

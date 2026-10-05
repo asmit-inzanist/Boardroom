@@ -5,6 +5,7 @@
 
 (function () {
   const API_BASE_URL = 'http://localhost:8000/report/';
+  const FOLLOW_UP_URL = 'http://localhost:8000/follow-up';
   const loadingMessages = [
     'Fetching company data...',
     'Running independent analysis...',
@@ -32,6 +33,8 @@
   let isDossierOpen = false;
   let activeRequest = 0;
   let loadingTimer;
+  let currentReport = null;
+  let followUpHistory = [];
 
   function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"']/g, (character) => ({
@@ -199,6 +202,9 @@
       }
       const report = await response.json();
       if (requestId !== activeRequest) return;
+      currentReport = report;
+      followUpHistory = [];
+      renderFollowUpMessages();
       renderReport(report);
       window.scrollTo({ top: reportPanel.getBoundingClientRect().top + window.scrollY - 96, behavior: 'smooth' });
       setDockVisibility(true);
@@ -235,10 +241,59 @@
     if (query) openDossier(query);
   }
 
+  function renderFollowUpMessages() {
+    const messages = document.getElementById('follow-up-messages');
+    if (!messages) return;
+    messages.innerHTML = followUpHistory.map((message) => `
+      <div class="follow-up-message follow-up-message--${message.role}">
+        <span class="follow-up-message__label">${message.role === 'user' ? 'You' : 'Boardroom'}</span>
+        <p>${escapeHtml(message.content)}</p>
+      </div>
+    `).join('');
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  async function submitFollowUp() {
+    const question = dockedInput?.value.trim();
+    if (!question || !currentReport?.ticker) return;
+    dockedInput.value = '';
+    followUpHistory.push({ role: 'user', content: question });
+    renderFollowUpMessages();
+    dockedSubmit.disabled = true;
+    dockedInput.disabled = true;
+
+    try {
+      const response = await fetch(FOLLOW_UP_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ticker: currentReport.ticker,
+          question,
+          history: followUpHistory.slice(-8)
+        })
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.detail || `The research service returned HTTP ${response.status}.`);
+      followUpHistory.push({ role: 'assistant', content: payload.answer });
+    } catch (error) {
+      followUpHistory.push({
+        role: 'assistant',
+        content: error instanceof Error ? error.message : 'Please try again.'
+      });
+    } finally {
+      dockedSubmit.disabled = false;
+      dockedInput.disabled = false;
+      dockedInput.focus();
+      renderFollowUpMessages();
+    }
+  }
+
   function returnToLanding() {
     activeRequest += 1;
     clearInterval(loadingTimer);
     isDossierOpen = false;
+    currentReport = null;
+    followUpHistory = [];
     dossierStage.classList.add('opacity-0', 'translate-y-6');
     queryBubble.classList.remove('is-visible');
     setDockVisibility(false);
@@ -256,9 +311,9 @@
   heroInput?.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') submitInput(heroInput);
   });
-  dockedSubmit?.addEventListener('click', () => submitInput(dockedInput));
+  dockedSubmit?.addEventListener('click', submitFollowUp);
   dockedInput?.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') submitInput(dockedInput);
+    if (event.key === 'Enter') submitFollowUp();
   });
   suggestionChips.forEach((chip) => chip.addEventListener('click', () => openDossier(chip.dataset.query || '')));
   followUpBtns.forEach((button) => button.addEventListener('click', () => {

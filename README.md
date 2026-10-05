@@ -83,6 +83,17 @@ GET http://localhost:8000/report/AAPL
 
 The endpoint accepts a ticker symbol or a company name that can be resolved by the backend. A successful response contains the synthesized report as JSON.
 
+After a report has been generated, ask a question about that report:
+
+```text
+POST http://localhost:8000/follow-up
+Content-Type: application/json
+
+{"ticker":"AAPL","question":"What are the biggest risks?","history":[]}
+```
+
+Follow-up answers use the generated report stored in the local cache and do not trigger a new company search.
+
 ## Project structure
 
 ```text
