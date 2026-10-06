@@ -3,7 +3,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from agents.follow_up_agent import answer_follow_up
+from agents.follow_up_agent import FollowUpRateLimitError, answer_follow_up
 from data_layer.prices import resolve_ticker
 from data_layer.cache import get_cached
 from orchestrator.graph import app as graph_app
@@ -63,3 +63,5 @@ def follow_up(request: FollowUpRequest):
         return {"answer": answer}
     except ValueError as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
+    except FollowUpRateLimitError as exc:
+        raise HTTPException(status_code=429, detail=str(exc)) from exc

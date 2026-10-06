@@ -3,8 +3,13 @@ import os
 
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai.chat_models import GoogleRateLimitError
 
 load_dotenv()
+
+
+class FollowUpRateLimitError(RuntimeError):
+    """Raised when Gemini rejects a follow-up because its quota is exhausted."""
 
 
 def answer_follow_up(report: dict, question: str, history: list[dict] | None = None) -> str:
@@ -35,6 +40,11 @@ User question:
 """
     try:
         response = model.invoke(prompt)
+    except GoogleRateLimitError as exc:
+        raise FollowUpRateLimitError(
+            "Gemini's follow-up quota has been exceeded. Check the Gemini API "
+            "billing or quota settings, or try again after the quota resets."
+        ) from exc
     except Exception as exc:
         raise ValueError("Gemini could not answer the follow-up question.") from exc
 

@@ -45,9 +45,7 @@
   function setDockVisibility(visible) {
     if (!dockedBar) return;
     dockedBar.classList.toggle('opacity-0', !visible);
-    dockedBar.classList.toggle('translate-y-8', !visible);
     dockedBar.classList.toggle('opacity-100', visible);
-    dockedBar.classList.toggle('translate-y-0', visible);
     dockedBar.classList.toggle('pointer-events-none', !visible);
   }
 
@@ -241,7 +239,7 @@
     if (query) openDossier(query);
   }
 
-  function renderFollowUpMessages() {
+  function renderFollowUpMessages(shouldScroll = false) {
     const messages = document.getElementById('follow-up-messages');
     if (!messages) return;
     messages.innerHTML = followUpHistory.map((message) => `
@@ -250,7 +248,11 @@
         <p>${escapeHtml(message.content)}</p>
       </div>
     `).join('');
-    messages.scrollTop = messages.scrollHeight;
+    if (shouldScroll) {
+      requestAnimationFrame(() => {
+        messages.scrollTop = messages.scrollHeight;
+      });
+    }
   }
 
   async function submitFollowUp() {
@@ -258,7 +260,7 @@
     if (!question || !currentReport?.ticker) return;
     dockedInput.value = '';
     followUpHistory.push({ role: 'user', content: question });
-    renderFollowUpMessages();
+    renderFollowUpMessages(true);
     dockedSubmit.disabled = true;
     dockedInput.disabled = true;
 
@@ -284,7 +286,7 @@
       dockedSubmit.disabled = false;
       dockedInput.disabled = false;
       dockedInput.focus();
-      renderFollowUpMessages();
+      renderFollowUpMessages(true);
     }
   }
 

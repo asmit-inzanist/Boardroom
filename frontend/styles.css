@@ -91,15 +91,17 @@ button:not(#hero-submit-btn):not(#docked-submit-btn):not(.suggestion-chip):not(.
 .follow-up-dock {
   width: min(100%, 48rem);
   margin: 2rem auto 0;
+  padding-bottom: 5.5rem;
 }
 
 .follow-up-messages {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-height: none;
+  max-height: 24rem;
   overflow-y: auto;
   margin-bottom: 0.75rem;
+  scroll-behavior: smooth;
 }
 
 .follow-up-message {
@@ -134,6 +136,11 @@ button:not(#hero-submit-btn):not(#docked-submit-btn):not(.suggestion-chip):not(.
 }
 
 .follow-up-input {
+  position: fixed;
+  left: max(1rem, calc((100vw - 48rem) / 2));
+  right: max(1rem, calc((100vw - 48rem) / 2));
+  bottom: 1.5rem;
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: space-between;
