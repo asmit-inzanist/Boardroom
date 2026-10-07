@@ -5,6 +5,7 @@ langchain-google-genai
 langchain-groq
 langgraph
 pandas
+psycopg[binary]
 pydantic
 python-dotenv
 requests
