@@ -40,10 +40,121 @@ button:not(#hero-submit-btn):not(#docked-submit-btn):not(.suggestion-chip):not(.
 
 /* ── Brand Wordmark ───────────────────────────────────────── */
 .boardroom-brand {
-  font-family: 'Michroma', 'Syncopate', sans-serif !important;
-  letter-spacing: 0.15em !important;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-family: 'Jim Nightshade', cursive !important;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.01em !important;
+}
+
+.boardroom-logo {
+  animation: boardroom-logo-spin 8s linear infinite;
+}
+
+.boardroom-header-logo {
+  flex: 0 0 auto;
+}
+
+.app-sidebar,
+.app-shell {
+  transition:
+    width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    min-width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    flex-basis 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    margin-left 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    padding-left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: width, margin-left;
+}
+
+.app-sidebar {
+  overflow-x: hidden;
+  contain: layout paint;
+}
+
+.sidebar-toggle {
+  flex: 0 0 auto;
+}
+
+body.sidebar-collapsed .app-sidebar {
+  width: 4rem !important;
+  transform: none;
+}
+
+body.sidebar-collapsed .app-shell {
+  margin-left: 4rem !important;
+  width: calc(100% - 4rem) !important;
+}
+
+.app-sidebar.w-14 {
+  width: 4rem !important;
+}
+
+.app-shell.pl-14 {
+  padding-left: 0 !important;
+}
+
+body.sidebar-collapsed .app-sidebar > div {
+  visibility: hidden;
+}
+
+body.sidebar-collapsed .app-sidebar > div:first-child,
+body.sidebar-collapsed .sidebar-heading,
+body.sidebar-collapsed .sidebar-toggle {
+  visibility: visible;
+}
+
+body.sidebar-collapsed .sidebar-heading {
+  position: relative;
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+body.sidebar-collapsed .sidebar-toggle {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin: 0;
+  transform: translateX(-50%);
+}
+
+body.sidebar-collapsed .sidebar-label {
+  display: none;
+  pointer-events: none;
+}
+
+body.sidebar-collapsed .app-sidebar nav {
+  visibility: visible;
+  display: none;
+}
+
+body.sidebar-collapsed .app-sidebar nav a {
+  display: none;
+  overflow: hidden;
+  white-space: nowrap;
+  color: transparent;
+  border-left: 0 !important;
+  background-color: transparent !important;
+}
+
+body.sidebar-transitioning .sidebar-label,
+body.sidebar-transitioning .app-sidebar nav {
+  visibility: hidden;
+}
+
+body.sidebar-transitioning .sidebar-toggle {
+  visibility: visible;
+}
+
+@keyframes boardroom-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boardroom-logo {
+    animation: none;
+  }
 }
 
 /* ── Suggestion Chips ─────────────────────────────────────── */
@@ -168,6 +279,186 @@ button:not(#hero-submit-btn):not(#docked-submit-btn):not(.suggestion-chip):not(.
 
 .report-content {
   padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+.reports-library {
+  width: min(100%, 72rem);
+  margin: 0 auto;
+  padding: 2rem 0 6rem;
+}
+
+.reports-library__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.reports-library__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 1rem;
+}
+
+.report-folder,
+.reports-folder-link {
+  color: #edebe6;
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+}
+
+.report-folder {
+  display: flex;
+  min-height: 8rem;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem;
+  border: 1px solid #2e3034;
+  border-radius: 0.75rem;
+  background: #17181a;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.report-folder:hover {
+  border-color: rgba(226, 195, 153, 0.6);
+  transform: translateY(-2px);
+}
+
+.report-folder__icon {
+  color: #e2c399;
+  font-size: 2rem;
+}
+
+.report-folder__name {
+  color: #edebe6;
+  font-weight: 600;
+}
+
+.report-folder__ticker {
+  color: #9e9c96;
+  font: 0.7rem 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+}
+
+.reports-folder-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.reports-back-btn {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.4rem;
+  color: #9e9c96;
+  font-size: 0.8rem;
+}
+
+.reports-back-btn:hover {
+  color: #edebe6;
+}
+
+.reports-folder-view__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.reports-folder-view__header h2 {
+  color: #edebe6;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.reports-folder-view__header p {
+  color: #9e9c96;
+  font: 0.75rem 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+}
+
+.reports-files {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 48rem;
+}
+
+.report-file {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid #2e3034;
+  border-radius: 0.6rem;
+  background: #17181a;
+  color: #edebe6;
+  text-align: left;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.report-file:hover {
+  border-color: rgba(226, 195, 153, 0.6);
+  background: #1f2022;
+}
+
+.report-file__icon {
+  color: #e2c399;
+}
+
+.report-file__details {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.report-file__name {
+  font-weight: 600;
+}
+
+.report-file__meta,
+.report-file__query {
+  overflow: hidden;
+  color: #9e9c96;
+  font-size: 0.75rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reports-folder-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.35rem;
+  padding-left: 0.75rem;
+}
+
+.reports-folder-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.5rem;
+  color: #9e9c96;
+  font-size: 0.8rem;
+}
+
+.reports-folder-link:hover {
+  color: #edebe6;
+}
+
+.reports-empty {
+  color: #9e9c96;
+}
+
+.reports-refresh-btn {
+  padding: 0.45rem 0.75rem;
+  border: 1px solid #2e3034;
+  border-radius: 9999px;
+  color: #edebe6;
+  background: #17181a;
 }
 
 .report-loading {

@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
-HEADERS = {"User-Agent": "YourName your.email@example.com"}  # replace with your real name/email — SEC requires this
+HEADERS = {"User-Agent": "blockfeed0@gmail.comsa"}  # replace with your real name/email — SEC requires this
 
 
 def get_cik(ticker: str) -> str:

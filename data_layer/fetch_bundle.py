@@ -36,15 +36,25 @@ def fetch_bundle(ticker: str) -> dict:
 
     price_data = get_price_history(ticker)
     financials = get_financials(ticker)
-    filing_text = get_latest_10k_text(ticker)
+    filing_error = None
+    try:
+        filing_text = get_latest_10k_text(ticker)
+    except ValueError as exc:
+        filing_text = ""
+        filing_error = str(exc)
     news = get_recent_news(ticker)
     info = financials["info"]
+
+    sources = ["yfinance", "Tavily news"]
+    if not filing_error:
+        sources.insert(1, "SEC 10-K")
 
     bundle = {
         "ticker": ticker,
         "metadata": {
             "fetched_at": datetime.now(timezone.utc).isoformat(),
-            "sources": ["yfinance", "SEC 10-K", "Tavily news"],
+            "sources": sources,
+            "unavailable_sources": {"SEC 10-K": filing_error} if filing_error else {},
         },
         "price_data": _dataframe_to_jsonable(price_data),
         "financials": {

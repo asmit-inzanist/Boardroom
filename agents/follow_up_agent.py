@@ -18,7 +18,7 @@ def answer_follow_up(report: dict, question: str, history: list[dict] | None = N
         raise ValueError("GEMINI_API_KEY is not configured.")
 
     model = ChatGoogleGenerativeAI(
-        model=os.getenv("GEMINI_MODEL", "gemini-3.8-flash"),
+        model=os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite"),
         google_api_key=api_key,
         temperature=0.2,
         timeout=30,
@@ -27,7 +27,8 @@ def answer_follow_up(report: dict, question: str, history: list[dict] | None = N
 Answer the user's question using only the generated report below.
 If the report does not contain enough information, say so clearly instead
 of inventing facts or using outside knowledge. Keep the answer concise and
-refer to specific report sections or figures when useful.
+refer to specific report sections or figures when useful. Use plain text only:
+do not use Markdown bold markers, headings, or asterisks for bullets.
 
 Generated report:
 {json.dumps(report, indent=2, default=str)}

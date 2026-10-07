@@ -84,6 +84,17 @@ def extract_json(text: str) -> str:
     return match.group(0)
 
 
+def response_content_to_text(content: Any) -> str:
+    if isinstance(content, str):
+        return content.strip()
+    if isinstance(content, list):
+        return "".join(
+            block.get("text", "") if isinstance(block, dict) else str(block)
+            for block in content
+        ).strip()
+    return str(content or "").strip()
+
+
 def run_agent(persona_prompt: str, data_bundle: dict, agent_name: str, tools=None) -> agentoutput:
     tools = tools or []
 
@@ -105,37 +116,45 @@ Respond ONLY with valid JSON matching this exact shape, no other text:
     model = llm.bind_tools(tools) if tools else llm
     messages: list[Any] = [HumanMessage(content=system_prompt)]
 
-    response = _invoke_with_delay(model, messages)
-    print(f"[{agent_name}] TOOL CALLS: {response.tool_calls or 'none'}")
-
-    if response.tool_calls:
-        messages.append(response)
-
-        for call in response.tool_calls:
-            fn_name = call["name"]
-            fn_args = call["args"]
-
-            if fn_name in AVAILABLE_TOOLS:
-                try:
-                    result = AVAILABLE_TOOLS[fn_name](**fn_args)
-                except Exception as e:
-                    result = f"Error running {fn_name}: {e}"
-            else:
-                result = f"Unknown tool: {fn_name}"
-
-            messages.append(ToolMessage(content=str(result), tool_call_id=call["id"]))
-
+    response = None
+    raw_output = ""
+    for attempt in range(3):
         response = _invoke_with_delay(model, messages)
-        print(f"[{agent_name}] TOOL CALLS AFTER TOOL: {response.tool_calls or 'none'}")
+        print(f"[{agent_name}] TOOL CALLS: {response.tool_calls or 'none'}")
 
-    raw_output = response.content
-    if not isinstance(raw_output, str):
-        raw_output = "".join(
-            block.get("text", "") if isinstance(block, dict) else str(block)
-            for block in raw_output
+        if response.tool_calls:
+            messages.append(response)
+
+            for call in response.tool_calls:
+                fn_name = call["name"]
+                fn_args = call["args"]
+
+                if fn_name in AVAILABLE_TOOLS:
+                    try:
+                        result = AVAILABLE_TOOLS[fn_name](**fn_args)
+                    except Exception as e:
+                        result = f"Error running {fn_name}: {e}"
+                else:
+                    result = f"Unknown tool: {fn_name}"
+
+                messages.append(ToolMessage(content=str(result), tool_call_id=call["id"]))
+            continue
+
+        raw_output = response_content_to_text(response.content)
+        if raw_output:
+            break
+        print(f"[{agent_name}] Empty response; retrying ({attempt + 1}/3)")
+        messages.append(
+            HumanMessage(
+                content=(
+                    "Your previous response was empty. Return the required JSON object now, "
+                    "with no explanation or additional text."
+                )
+            )
         )
+
     if not raw_output:
-        raise ValueError("Groq returned an empty response")
+        raise ValueError(f"Groq returned an empty response for {agent_name} after 3 attempts")
 
     json_str = extract_json(raw_output)
     parsed = json.loads(json_str)

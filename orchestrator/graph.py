@@ -10,9 +10,12 @@ from agents.business_model_agent import run_business_model_agent
 from agents.risk_agent import run_risk_agent
 from agents.management_agent import run_management_agent
 from orchestrator.debate import find_disagreements_llm, run_debate_turn
+from data_layer.reports import save_report
 
 class states(TypedDict):
     ticker: str
+    input_query: str
+    company_name: str
     data_bundle: dict
     agent_outputs: Annotated[list, operator.add]
     disagreements: list
@@ -67,9 +70,17 @@ def synthesizer_node(state: states) -> dict:
         state["agent_outputs"],
         state["disagreement_log"],
     )
+    report.setdefault("input_query", state["input_query"])
+    report.setdefault("company_name", state["company_name"])
     cached_bundle = dict(state["data_bundle"])
     cached_bundle["final_report"] = report
     save_cache(state["ticker"], cached_bundle)
+    save_report(
+        state["ticker"],
+        report,
+        input_query=state["input_query"],
+        company_name=state["company_name"],
+    )
     return {"final_report": report}
 
 graph = StateGraph(states)

@@ -1,5 +1,6 @@
 import json
 import os
+import re
 
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -14,7 +15,7 @@ def _gemini_company_name(user_input: str) -> str:
         raise ValueError("GEMINI_API_KEY is not configured.")
 
     model = ChatGoogleGenerativeAI(
-        model=os.getenv("GEMINI_MODEL", "gemini-3.8-flash"),
+        model=os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite"),
         google_api_key=api_key,
         temperature=0,
         timeout=30,
@@ -52,12 +53,29 @@ User input:
     return company_name
 
 
+def _quote_text(quote: dict) -> str:
+    return " ".join(
+        str(quote.get(field) or "")
+        for field in ("shortname", "longname", "symbol")
+    ).lower()
+
+
+def _is_fund_like_quote(quote: dict) -> bool:
+    fund_terms = (" etf", "mutual fund", "index fund", " fund")
+    return any(term in _quote_text(quote) for term in fund_terms)
+
+
 def resolve_ticker(query: str) -> dict[str, str]:
     """Resolve any user input through Gemini, then validate it with Yahoo Finance."""
     if not query.strip():
         raise ValueError("Enter a ticker or company name.")
 
-    search_query = _gemini_company_name(query)
+    cleaned_query = query.strip()
+    search_query = (
+        cleaned_query.upper()
+        if re.fullmatch(r"[A-Za-z]{1,5}", cleaned_query)
+        else _gemini_company_name(cleaned_query)
+    )
 
     try:
         quotes = yf.Search(search_query, max_results=10).quotes
@@ -72,6 +90,18 @@ def resolve_ticker(query: str) -> dict[str, str]:
         raise ValueError(
             f"No listed company was found for '{query}'. Try a company name or ticker."
         )
+
+    requested_fund = bool(re.search(r"\b(etf|mutual fund|index fund)\b", cleaned_query, re.I))
+    company_quotes = [
+        quote for quote in equity_quotes
+        if not _is_fund_like_quote(quote)
+    ]
+    if not requested_fund and not company_quotes:
+        raise ValueError(
+            f"'{query}' matched an investment fund or ETF, not a publicly traded operating company."
+        )
+    if company_quotes:
+        equity_quotes = company_quotes
 
     preferred_exchanges = {"NMS", "NYQ", "ASE", "NASDAQ", "NYSE"}
     equity_quotes.sort(

@@ -9,7 +9,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syncopate:wght@700&family=Michroma&family=Zen+Dots&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Jim+Nightshade&family=JetBrains+Mono:wght@400;500;600&family=Syncopate:wght@700&family=Michroma&family=Zen+Dots&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS (CDN) -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -122,7 +122,7 @@
   </script>
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=13">
 </head>
 
 <body class="bg-[#000000] text-[#EDEBE6] font-body-md text-body-md antialiased min-h-screen selection:bg-primary-container selection:text-on-primary-container">
@@ -135,22 +135,17 @@
       <!-- Left: Logo + status -->
       <div class="flex items-center gap-space-xl">
         <a class="flex items-center gap-2.5" data-path="overview" href="#">
-          <span class="boardroom-brand text-[15px] text-[#EDEBE6] tracking-[0.15em]">BOARDROOM</span>
-          <span class="font-label-sm text-[10px] text-[#7C7A75] uppercase tracking-widest px-1.5 py-0.5 rounded bg-[#1b1c1e] border border-[#2e3034]">TERMINAL</span>
+          <span class="boardroom-brand text-[30px] text-[#EDEBE6]">Boardroom</span>
         </a>
         <div class="h-4 w-px bg-[#2e3034] hidden md:block"></div>
-        <div class="hidden md:flex items-center gap-space-xs font-label-sm text-label-sm text-[#7C7A75]">
-          <span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
-          <span>Terminal 04 · Live Feed</span>
-        </div>
+        <img
+          class="boardroom-header-logo -ml-2 h-11 w-11 object-contain"
+          src="assets/boardroom_logo.png"
+          alt="Boardroom logo"
+        >
       </div>
       <!-- Right: Controls -->
       <div class="flex items-center gap-space-md">
-        <div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded border border-[#2e3034] bg-[#17181a] font-label-sm text-label-sm text-[#7C7A75]">
-          <span class="text-[#EDEBE6] font-medium">REVI</span>
-          <span>:: v4.18.2</span>
-        </div>
-        <button class="px-space-md py-1.5 rounded-full border border-[#2e3034] text-[#EDEBE6] hover:border-[#7C7A75] hover:text-[#EDEBE6] font-title-sm text-title-sm transition-all bg-[#17181a]">Sign in</button>
         <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center cursor-pointer shadow">
           <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
         </div>
@@ -161,49 +156,70 @@
   <!-- ============================================================
        SIDEBAR
   ============================================================= -->
-  <aside class="fixed left-0 top-16 bottom-0 w-64 bg-[#000000] flex flex-col justify-between py-space-lg">
+  <aside class="app-sidebar fixed left-0 top-16 bottom-0 w-64 bg-[#0d0e10] flex flex-col justify-between py-space-lg" id="app-sidebar">
     <div class="px-space-md">
-      <div class="font-label-sm text-label-sm text-[#7C7A75] uppercase tracking-wider px-space-sm mb-space-md">Intelligence Feeds</div>
+      <div class="sidebar-heading flex items-center justify-between gap-2 px-space-sm mb-space-md">
+        <div class="sidebar-label font-label-sm text-label-sm text-[#7C7A75] uppercase tracking-wider">Intelligence Feeds</div>
+        <button
+          aria-label="Collapse sidebar"
+          aria-expanded="true"
+          class="sidebar-toggle flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#9E9C96] transition-colors hover:bg-[#1f2022] hover:text-[#EDEBE6]"
+          id="sidebar-toggle"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
+        </button>
+      </div>
       <nav class="flex flex-col gap-space-xs" data-active-classes="bg-[#1f2022] text-[#EDEBE6] font-semibold border-l-2 border-primary">
         <a aria-current="page" class="px-space-sm py-2 rounded transition-colors bg-[#1f2022] text-[#EDEBE6] font-semibold border-l-2 border-primary" data-path="overview" href="#">Overview</a>
-        <a class="px-space-sm py-2 rounded text-[#7C7A75] hover:text-[#EDEBE6] hover:bg-[#1b1c1e] transition-colors" data-path="dossiers" href="#">Dossiers</a>
-        <a class="px-space-sm py-2 rounded text-[#7C7A75] hover:text-[#EDEBE6] hover:bg-[#1b1c1e] transition-colors" data-path="agent-consensus" href="#">Agent Consensus</a>
-        <a class="px-space-sm py-2 rounded text-[#7C7A75] hover:text-[#EDEBE6] hover:bg-[#1b1c1e] transition-colors" data-path="deal-matrix" href="#">Deal Matrix</a>
-        <a class="px-space-sm py-2 rounded text-[#7C7A75] hover:text-[#EDEBE6] hover:bg-[#1b1c1e] transition-colors" data-path="audit-log" href="#">Audit Log</a>
+        <a class="px-space-sm py-2 rounded text-[#7C7A75] hover:text-[#EDEBE6] hover:bg-[#1b1c1e] transition-colors" data-path="reports" href="#">Reports</a>
+        <div class="hidden reports-folder-list" id="reports-folder-list" aria-label="Saved reports"></div>
       </nav>
     </div>
     <!-- Session Footer -->
     <div class="px-space-md pt-space-md border-t border-[#2e3034]">
-      <div class="flex items-center justify-between px-space-sm font-label-sm text-label-sm text-[#7C7A75]">
-        <span>SESSION ID</span>
-        <span class="text-[#EDEBE6] font-mono">#902-BD4</span>
-      </div>
-      <div class="mt-space-xs px-space-sm font-label-sm text-label-sm text-[#7C7A75]">DISCRETION GUARANTEED</div>
+      <div class="px-space-sm font-label-sm text-label-sm text-[#7C7A75]">DISCLAIMER</div>
+      <p class="mt-space-xs px-space-sm text-xs leading-relaxed text-[#7C7A75]">
+        Boardroom is a research and educational tool, not financial advice. Verify all information independently before making investment decisions.
+      </p>
     </div>
   </aside>
 
   <!-- ============================================================
        MAIN CONTENT
   ============================================================= -->
-  <div class="pl-64">
+  <div class="app-shell pl-64">
     <div class="query-bubble" id="query-bubble" aria-live="polite"></div>
     <main class="w-full min-h-screen pt-16 bg-[#000000] px-gutter-desktop py-space-xl">
       <div class="flex flex-col w-full relative min-h-[calc(100vh-4rem)] text-on-surface">
+
+        <section class="hidden reports-library" id="reports-library">
+          <div class="reports-library__header">
+            <div>
+              <p class="report-eyebrow">SAVED RESEARCH</p>
+              <h1 class="report-title">Reports</h1>
+            </div>
+            <button class="reports-refresh-btn" id="reports-refresh-btn" type="button">Refresh</button>
+          </div>
+          <div class="reports-library__grid" id="reports-library-grid"></div>
+        </section>
 
         <!-- ======================================================
              1. LANDING HERO STATE
         ======================================================= -->
         <section class="transition-all duration-700 ease-out flex flex-col items-center justify-center py-space-xl my-auto min-h-[74vh] text-center relative max-w-4xl mx-auto px-margin" id="landing-stage">
 
-          <!-- VERITAS Badge -->
+          <!-- Boardroom logo -->
           <div class="mb-space-lg relative flex flex-col items-center">
-            <div class="w-13 h-13 px-4 py-2.5 rounded-xl bg-[#18191b] border border-[#2e3034] flex flex-col items-center justify-center shadow-lg relative">
-              <span class="text-[9px] font-label-sm tracking-[0.2em] uppercase text-[#7C7A75] font-semibold">VERITAS</span>
-            </div>
+            <img
+              class="boardroom-logo h-32 w-32 object-contain"
+              src="assets/boardroom_logo.png"
+              alt="Boardroom logo"
+            >
           </div>
 
           <!-- Headline -->
-          <h1 class="text-display-lg text-[#EDEBE6] max-w-3xl text-balance mb-space-sm" style="font-family: 'Zen Dots', sans-serif; font-size: 3.25rem; line-height: 1.18; font-weight: 400; letter-spacing: -0.02em;">
+          <h1 class="text-display-lg text-[#EDEBE6] max-w-3xl text-balance mb-space-sm" style="font-family: 'Bungee Outline', sans-serif; font-size: 3.25rem; line-height: 1.18; font-weight: 400; letter-spacing: -0.02em;">
             Ask about any company.
           </h1>
 
@@ -226,23 +242,23 @@
           <!-- Quick Prompt Chips -->
           <div class="flex flex-col items-center gap-2 max-w-2xl">
             <div class="flex flex-wrap items-center justify-center gap-2">
-              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="Analyze Tesla (TSLA)">
+              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="TSLA">
                 <span class="text-primary text-[12px] font-mono leading-none">⚡</span>
-                <span class="text-[#EDEBE6]">Analyze Tesla (TSLA)</span>
+                <span class="text-[#EDEBE6]">Tesla</span>
               </button>
-              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="Compare MSFT vs GOOGL">
+              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="MSFT">
                 <span class="text-[#7C7A75] text-[12px] leading-none">⇄</span>
-                <span class="text-[#EDEBE6]">Compare MSFT vs GOOGL</span>
+                <span class="text-[#EDEBE6]">Microsoft</span>
               </button>
-              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="Check NVDA margins">
+              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="NVDA">
                 <span class="text-tertiary text-[12px] leading-none">📈</span>
-                <span class="text-[#EDEBE6]">Check NVDA margins</span>
+                <span class="text-[#EDEBE6]">Nvidia</span>
               </button>
             </div>
             <div class="flex items-center justify-center">
-              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="Surprise me (Audit Palantir)">
+              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="PLTR">
                 <span class="text-primary text-[12px] leading-none">✨</span>
-                <span class="text-[#EDEBE6]">Surprise me (Audit Palantir)</span>
+                <span class="text-[#EDEBE6]">Palantir</span>
               </button>
             </div>
           </div>
@@ -257,8 +273,8 @@
           <!-- Active Query Breadcrumb -->
           <div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md p-space-sm bg-[#17181a] border border-[#2e3034] rounded-lg">
             <div class="flex items-center gap-space-sm">
-              <span class="px-2 py-0.5 rounded bg-primary/20 text-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold">TICKER // TSLA</span>
-              <span class="font-headline-sm text-headline-sm text-on-surface">Tesla, Inc. — Autonomous Fleet &amp; Energy Dossier</span>
+              <span class="px-2 py-0.5 rounded bg-primary/20 text-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold" id="active-report-ticker">TICKER // —</span>
+              <span class="font-headline-sm text-headline-sm text-on-surface" id="active-report-company">Research Report</span>
             </div>
             <div class="flex items-center gap-space-sm">
               <div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#1f2022] border border-tertiary/30 text-tertiary font-label-sm text-label-sm">
@@ -555,7 +571,7 @@
   </div>
 
   <!-- App Script -->
-  <script src="app.js"></script>
+  <script src="app.js?v=13"></script>
 
 </body>
 </html>
