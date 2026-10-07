@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Boardroom — Institutional Investment Research Terminal. Autonomous agent consensus synthesizing SEC filings, forensic earnings quality, and executive transcripts in real-time.">
+  <meta name="description"
+    content="Boardroom — Institutional Investment Research Terminal. Autonomous agent consensus synthesizing SEC filings, forensic earnings quality, and executive transcripts in real-time.">
   <title>Boardroom — Investment Research Terminal</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Jim+Nightshade&family=JetBrains+Mono:wght@400;500;600&family=Syncopate:wght@700&family=Michroma&family=Zen+Dots&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Jim+Nightshade&family=JetBrains+Mono:wght@400;500;600&family=Syncopate:wght@700&family=Michroma&family=Zen+Dots&display=swap"
+    rel="stylesheet">
 
   <!-- Tailwind CSS (CDN) -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -125,7 +132,8 @@
   <link rel="stylesheet" href="styles.css?v=13">
 </head>
 
-<body class="bg-[#000000] text-[#EDEBE6] font-body-md text-body-md antialiased min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<body
+  class="bg-[#000000] text-[#EDEBE6] font-body-md text-body-md antialiased min-h-screen selection:bg-primary-container selection:text-on-primary-container">
 
   <!-- ============================================================
        HEADER
@@ -138,11 +146,8 @@
           <span class="boardroom-brand text-[30px] text-[#EDEBE6]">Boardroom</span>
         </a>
         <div class="h-4 w-px bg-[#2e3034] hidden md:block"></div>
-        <img
-          class="boardroom-header-logo -ml-2 h-11 w-11 object-contain"
-          src="assets/boardroom_logo.png"
-          alt="Boardroom logo"
-        >
+        <img class="boardroom-header-logo -ml-2 h-11 w-11 object-contain" src="assets/boardroom_logo.png"
+          alt="Boardroom logo">
       </div>
       <!-- Right: Controls -->
       <div class="flex items-center gap-space-md">
@@ -156,23 +161,25 @@
   <!-- ============================================================
        SIDEBAR
   ============================================================= -->
-  <aside class="app-sidebar fixed left-0 top-16 bottom-0 w-64 bg-[#0d0e10] flex flex-col justify-between py-space-lg" id="app-sidebar">
+  <aside class="app-sidebar fixed left-0 top-16 bottom-0 w-64 bg-[#0d0e10] flex flex-col justify-between py-space-lg"
+    id="app-sidebar">
     <div class="px-space-md">
       <div class="sidebar-heading flex items-center justify-between gap-2 px-space-sm mb-space-md">
-        <div class="sidebar-label font-label-sm text-label-sm text-[#7C7A75] uppercase tracking-wider">Intelligence Feeds</div>
-        <button
-          aria-label="Collapse sidebar"
-          aria-expanded="true"
+        <div class="sidebar-label font-label-sm text-label-sm text-[#7C7A75] uppercase tracking-wider">Intelligence
+          Feeds</div>
+        <button aria-label="Collapse sidebar" aria-expanded="true"
           class="sidebar-toggle flex h-8 w-8 shrink-0 items-center justify-center rounded text-[#9E9C96] transition-colors hover:bg-[#1f2022] hover:text-[#EDEBE6]"
-          id="sidebar-toggle"
-          type="button"
-        >
+          id="sidebar-toggle" type="button">
           <span class="material-symbols-outlined text-[20px]" aria-hidden="true">menu</span>
         </button>
       </div>
-      <nav class="flex flex-col gap-space-xs" data-active-classes="bg-[#1f2022] text-[#EDEBE6] font-semibold border-l-2 border-primary">
-        <a aria-current="page" class="px-space-sm py-2 rounded transition-colors bg-[#1f2022] text-[#EDEBE6] font-semibold border-l-2 border-primary" data-path="overview" href="#">Overview</a>
-        <a class="px-space-sm py-2 rounded text-[#7C7A75] hover:text-[#EDEBE6] hover:bg-[#1b1c1e] transition-colors" data-path="reports" href="#">Reports</a>
+      <nav class="flex flex-col gap-space-xs"
+        data-active-classes="bg-[#1f2022] text-[#EDEBE6] font-semibold border-l-2 border-primary">
+        <a aria-current="page"
+          class="px-space-sm py-2 rounded transition-colors bg-[#1f2022] text-[#EDEBE6] font-semibold border-l-2 border-primary"
+          data-path="overview" href="#">Overview</a>
+        <a class="px-space-sm py-2 rounded text-[#7C7A75] hover:text-[#EDEBE6] hover:bg-[#1b1c1e] transition-colors"
+          data-path="reports" href="#">Reports</a>
         <div class="hidden reports-folder-list" id="reports-folder-list" aria-label="Saved reports"></div>
       </nav>
     </div>
@@ -180,7 +187,8 @@
     <div class="px-space-md pt-space-md border-t border-[#2e3034]">
       <div class="px-space-sm font-label-sm text-label-sm text-[#7C7A75]">DISCLAIMER</div>
       <p class="mt-space-xs px-space-sm text-xs leading-relaxed text-[#7C7A75]">
-        Boardroom is a research and educational tool, not financial advice. Verify all information independently before making investment decisions.
+        Boardroom is a research and educational tool, not financial advice. Verify all information independently before
+        making investment decisions.
       </p>
     </div>
   </aside>
@@ -207,33 +215,41 @@
         <!-- ======================================================
              1. LANDING HERO STATE
         ======================================================= -->
-        <section class="transition-all duration-700 ease-out flex flex-col items-center justify-center py-space-xl my-auto min-h-[74vh] text-center relative max-w-4xl mx-auto px-margin" id="landing-stage">
+        <section
+          class="transition-all duration-700 ease-out flex flex-col items-center justify-center py-space-xl my-auto min-h-[74vh] text-center relative max-w-4xl mx-auto px-margin"
+          id="landing-stage">
 
           <!-- Boardroom logo -->
           <div class="mb-space-lg relative flex flex-col items-center">
-            <img
-              class="boardroom-logo h-32 w-32 object-contain"
-              src="assets/boardroom_logo.png"
-              alt="Boardroom logo"
-            >
+            <img class="boardroom-logo h-32 w-32 object-contain" src="assets/boardroom_logo.png" alt="Boardroom logo">
           </div>
 
           <!-- Headline -->
-          <h1 class="text-display-lg text-[#EDEBE6] max-w-3xl text-balance mb-space-sm" style="font-family: 'Bungee Outline', sans-serif; font-size: 3.25rem; line-height: 1.18; font-weight: 400; letter-spacing: -0.02em;">
+          <h1 class="text-display-lg text-[#EDEBE6] max-w-3xl text-balance mb-space-sm"
+            style="font-family: 'Bungee Outline', sans-serif; font-size: 3.25rem; line-height: 1.18; font-weight: 400; letter-spacing: -0.02em;">
             Ask about any company.
           </h1>
 
           <!-- Subtitle -->
-          <p class="text-body-lg text-[#9E9C96] max-w-xl mx-auto mb-space-xl font-normal leading-relaxed" style="font-family: 'Inter', sans-serif;">
-            Autonomous agent consensus synthesizing SEC filings, forensic earnings quality, and executive transcripts in real-time.
+          <p class="text-body-lg text-[#9E9C96] max-w-xl mx-auto mb-space-xl font-normal leading-relaxed"
+            style="font-family: 'Inter', sans-serif;">
+            Autonomous agent consensus synthesizing SEC filings, forensic earnings quality, and executive transcripts in
+            real-time.
           </p>
 
           <!-- Search Bar -->
           <div class="w-full max-w-2xl relative mb-space-lg group">
-            <div class="relative flex items-center bg-[#17181a] border border-[#2e3034] focus-within:border-[#7C7A75] rounded-full px-4 py-2 transition-all shadow-2xl shadow-black/80">
-              <span class="material-symbols-outlined text-[#7C7A75] group-focus-within:text-[#EDEBE6] transition-colors text-[20px] ml-1 mr-3">show_chart</span>
-              <input class="w-full border-0 bg-transparent text-[#EDEBE6] placeholder:text-[#7C7A75] focus:border-0 focus:outline-none focus:ring-0 text-[15px] font-normal" id="hero-search-input" placeholder="Enter a ticker or company name (e.g. TSLA, NVDA, Apple)..." type="text" value="">
-              <button class="w-8 h-8 rounded-full bg-[#e2c399] hover:bg-[#c5a880] text-[#000000] flex items-center justify-center ml-2 transition-transform active:scale-95 shrink-0 shadow" id="hero-submit-btn">
+            <div
+              class="relative flex items-center bg-[#17181a] border border-[#2e3034] focus-within:border-[#7C7A75] rounded-full px-4 py-2 transition-all shadow-2xl shadow-black/80">
+              <span
+                class="material-symbols-outlined text-[#7C7A75] group-focus-within:text-[#EDEBE6] transition-colors text-[20px] ml-1 mr-3">show_chart</span>
+              <input
+                class="w-full border-0 bg-transparent text-[#EDEBE6] placeholder:text-[#7C7A75] focus:border-0 focus:outline-none focus:ring-0 text-[15px] font-normal"
+                id="hero-search-input" placeholder="Enter a ticker or company name (e.g. TSLA, NVDA, Apple)..."
+                type="text" value="">
+              <button
+                class="w-8 h-8 rounded-full bg-[#e2c399] hover:bg-[#c5a880] text-[#000000] flex items-center justify-center ml-2 transition-transform active:scale-95 shrink-0 shadow"
+                id="hero-submit-btn">
                 <span class="material-symbols-outlined text-[18px]">arrow_upward</span>
               </button>
             </div>
@@ -242,21 +258,29 @@
           <!-- Quick Prompt Chips -->
           <div class="flex flex-col items-center gap-2 max-w-2xl">
             <div class="flex flex-wrap items-center justify-center gap-2">
-              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="TSLA">
+              <button
+                class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2"
+                data-query="TSLA">
                 <span class="text-primary text-[12px] font-mono leading-none">⚡</span>
                 <span class="text-[#EDEBE6]">Tesla</span>
               </button>
-              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="MSFT">
+              <button
+                class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2"
+                data-query="MSFT">
                 <span class="text-[#7C7A75] text-[12px] leading-none">⇄</span>
                 <span class="text-[#EDEBE6]">Microsoft</span>
               </button>
-              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="NVDA">
+              <button
+                class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2"
+                data-query="NVDA">
                 <span class="text-tertiary text-[12px] leading-none">📈</span>
                 <span class="text-[#EDEBE6]">Nvidia</span>
               </button>
             </div>
             <div class="flex items-center justify-center">
-              <button class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2" data-query="PLTR">
+              <button
+                class="suggestion-chip px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all flex items-center gap-2"
+                data-query="PLTR">
                 <span class="text-primary text-[12px] leading-none">✨</span>
                 <span class="text-[#EDEBE6]">Palantir</span>
               </button>
@@ -268,20 +292,28 @@
         <!-- ======================================================
              2. RESEARCH DOSSIER STATE
         ======================================================= -->
-        <section class="hidden opacity-0 translate-y-6 transition-all duration-700 ease-out flex flex-col w-full pb-32" id="dossier-stage">
+        <section class="hidden opacity-0 translate-y-6 transition-all duration-700 ease-out flex flex-col w-full pb-32"
+          id="dossier-stage">
 
           <!-- Active Query Breadcrumb -->
-          <div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md p-space-sm bg-[#17181a] border border-[#2e3034] rounded-lg">
+          <div
+            class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md p-space-sm bg-[#17181a] border border-[#2e3034] rounded-lg">
             <div class="flex items-center gap-space-sm">
-              <span class="px-2 py-0.5 rounded bg-primary/20 text-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold" id="active-report-ticker">TICKER // —</span>
-              <span class="font-headline-sm text-headline-sm text-on-surface" id="active-report-company">Research Report</span>
+              <span
+                class="px-2 py-0.5 rounded bg-primary/20 text-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold"
+                id="active-report-ticker">TICKER // —</span>
+              <span class="font-headline-sm text-headline-sm text-on-surface" id="active-report-company">Research
+                Report</span>
             </div>
             <div class="flex items-center gap-space-sm">
-              <div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#1f2022] border border-tertiary/30 text-tertiary font-label-sm text-label-sm">
+              <div
+                class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#1f2022] border border-tertiary/30 text-tertiary font-label-sm text-label-sm">
                 <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
                 <span>3 Agents Active · Synthesis v4.1</span>
               </div>
-              <button class="px-2.5 py-1 rounded bg-[#1f2022] hover:bg-[#292a2c] text-[#9E9C96] hover:text-[#EDEBE6] font-label-sm text-label-sm transition-colors flex items-center gap-1" id="reset-to-landing-btn">
+              <button
+                class="px-2.5 py-1 rounded bg-[#1f2022] hover:bg-[#292a2c] text-[#9E9C96] hover:text-[#EDEBE6] font-label-sm text-label-sm transition-colors flex items-center gap-1"
+                id="reset-to-landing-btn">
                 <span class="material-symbols-outlined text-[14px]">arrow_back</span>
                 <span>New Query</span>
               </button>
@@ -294,17 +326,22 @@
           </div>
 
           <!-- Existing static dossier retained as a visual fallback -->
-          <article class="static-dossier w-full bg-[#17181a] rounded-xl border border-[#2e3034] shadow-2xl shadow-black/80 overflow-hidden relative">
+          <article
+            class="static-dossier w-full bg-[#17181a] rounded-xl border border-[#2e3034] shadow-2xl shadow-black/80 overflow-hidden relative">
 
             <!-- Dossier Header Bar -->
-            <div class="px-gutter-desktop py-space-md border-b border-[#2e3034] flex flex-wrap items-center justify-between gap-space-sm bg-[#1b1c1e]">
+            <div
+              class="px-gutter-desktop py-space-md border-b border-[#2e3034] flex flex-wrap items-center justify-between gap-space-sm bg-[#1b1c1e]">
               <div>
-                <span class="font-label-sm text-label-sm text-[#7C7A75] uppercase tracking-wider block">CONFIDENTIAL INSTITUTIONAL INVESTMENT MEMORANDUM</span>
-                <h2 class="font-headline-md text-headline-md text-on-surface tracking-tight mt-0.5">Tesla, Inc. (NASDAQ: TSLA) — Institutional Consensus Memo</h2>
+                <span class="font-label-sm text-label-sm text-[#7C7A75] uppercase tracking-wider block">CONFIDENTIAL
+                  INSTITUTIONAL INVESTMENT MEMORANDUM</span>
+                <h2 class="font-headline-md text-headline-md text-on-surface tracking-tight mt-0.5">Tesla, Inc. (NASDAQ:
+                  TSLA) — Institutional Consensus Memo</h2>
               </div>
               <div class="text-right">
                 <span class="font-label-sm text-label-sm text-[#7C7A75] block">LEAD CO-CHAIR AGENT</span>
-                <span class="font-label-md text-label-md text-primary font-medium flex items-center justify-end gap-1.5">
+                <span
+                  class="font-label-md text-label-md text-primary font-medium flex items-center justify-end gap-1.5">
                   <span class="material-symbols-outlined text-[16px]">verified_user</span>
                   Agent Magna (Forensic Financials)
                 </span>
@@ -312,27 +349,33 @@
             </div>
 
             <!-- Core Verdict & Quantitative Matrix -->
-            <div class="px-gutter-desktop py-space-lg grid grid-cols-1 lg:grid-cols-12 gap-space-lg border-b border-[#2e3034]">
+            <div
+              class="px-gutter-desktop py-space-lg grid grid-cols-1 lg:grid-cols-12 gap-space-lg border-b border-[#2e3034]">
 
               <!-- Left: Sovereign Verdict Badge -->
-              <div class="lg:col-span-5 flex flex-col justify-between p-space-md rounded-lg bg-[#1b1c1e] border border-[#2e3034] relative overflow-hidden">
+              <div
+                class="lg:col-span-5 flex flex-col justify-between p-space-md rounded-lg bg-[#1b1c1e] border border-[#2e3034] relative overflow-hidden">
                 <div>
                   <div class="flex items-center justify-between mb-space-sm">
-                    <span class="font-label-sm text-label-sm text-[#7C7A75] uppercase tracking-wider">BOARDROOM CONSENSUS RATING</span>
+                    <span class="font-label-sm text-label-sm text-[#7C7A75] uppercase tracking-wider">BOARDROOM
+                      CONSENSUS RATING</span>
                     <span class="font-label-sm text-label-sm text-[#7C7A75]">ID: #MEMO-8841-TSLA</span>
                   </div>
-                  <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary font-headline-sm text-headline-sm mb-space-sm">
+                  <div
+                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary font-headline-sm text-headline-sm mb-space-sm">
                     <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
                     <span>Gray Zone / Cautious Hold</span>
                   </div>
                   <p class="font-body-sm text-body-sm text-[#9E9C96] leading-relaxed">
-                    Consensus leans defensive. While Robotaxi FSD architecture holds non-linear optionality, automotive gross margin contraction (ex-regulatory credits) indicates near-term terminal value compression.
+                    Consensus leans defensive. While Robotaxi FSD architecture holds non-linear optionality, automotive
+                    gross margin contraction (ex-regulatory credits) indicates near-term terminal value compression.
                   </p>
                 </div>
                 <div class="grid grid-cols-3 gap-space-sm pt-space-md mt-space-md border-t border-[#2e3034]">
                   <div>
                     <span class="font-label-sm text-label-sm text-[#7C7A75] uppercase block">Consensus Score</span>
-                    <span class="font-headline-sm text-headline-sm text-[#EDEBE6]">64<span class="text-label-sm text-[#7C7A75] font-normal">/100</span></span>
+                    <span class="font-headline-sm text-headline-sm text-[#EDEBE6]">64<span
+                        class="text-label-sm text-[#7C7A75] font-normal">/100</span></span>
                   </div>
                   <div>
                     <span class="font-label-sm text-label-sm text-[#7C7A75] uppercase block">Val. Divergence</span>
@@ -355,7 +398,8 @@
                       <span class="font-label-sm text-label-sm text-error">-14.2%</span>
                     </div>
                     <svg class="w-full h-7 mt-2 text-primary overflow-visible" fill="none" viewBox="0 0 100 24">
-                      <path d="M0 8 L20 12 L40 7 L60 16 L80 14 L100 20" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path>
+                      <path d="M0 8 L20 12 L40 7 L60 16 L80 14 L100 20" stroke="currentColor" stroke-linecap="round"
+                        stroke-width="1.5"></path>
                     </svg>
                   </div>
                   <div class="p-3 rounded bg-[#1b1c1e] border border-[#2e3034]">
@@ -365,7 +409,8 @@
                       <span class="font-label-sm text-label-sm text-[#7C7A75]">S&amp;P: 21x</span>
                     </div>
                     <svg class="w-full h-7 mt-2 text-outline overflow-visible" fill="none" viewBox="0 0 100 24">
-                      <path d="M0 18 L25 15 L50 9 L75 12 L100 6" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path>
+                      <path d="M0 18 L25 15 L50 9 L75 12 L100 6" stroke="currentColor" stroke-linecap="round"
+                        stroke-width="1.5"></path>
                     </svg>
                   </div>
                   <div class="p-3 rounded bg-[#1b1c1e] border border-[#2e3034]">
@@ -375,7 +420,8 @@
                       <span class="font-label-sm text-label-sm text-tertiary">+0.2%</span>
                     </div>
                     <svg class="w-full h-7 mt-2 text-tertiary overflow-visible" fill="none" viewBox="0 0 100 24">
-                      <path d="M0 16 L25 18 L50 14 L75 8 L100 10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path>
+                      <path d="M0 16 L25 18 L50 14 L75 8 L100 10" stroke="currentColor" stroke-linecap="round"
+                        stroke-width="1.5"></path>
                     </svg>
                   </div>
                   <div class="p-3 rounded bg-[#1b1c1e] border border-[#2e3034]">
@@ -385,15 +431,20 @@
                       <span class="font-label-sm text-label-sm text-tertiary">Megapack</span>
                     </div>
                     <svg class="w-full h-7 mt-2 text-tertiary overflow-visible" fill="none" viewBox="0 0 100 24">
-                      <path d="M0 20 L25 17 L50 12 L75 9 L100 3" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path>
+                      <path d="M0 20 L25 17 L50 12 L75 9 L100 3" stroke="currentColor" stroke-linecap="round"
+                        stroke-width="1.5"></path>
                     </svg>
                   </div>
                 </div>
                 <!-- Forensic Integrity Alert -->
-                <div class="p-space-sm rounded bg-[#1b1c1e] border-l-2 border-primary flex items-start gap-space-sm text-on-surface-variant">
+                <div
+                  class="p-space-sm rounded bg-[#1b1c1e] border-l-2 border-primary flex items-start gap-space-sm text-on-surface-variant">
                   <span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">policy</span>
                   <div class="font-body-sm text-body-sm leading-normal">
-                    <strong class="text-[#EDEBE6] font-title-sm">Forensic Anomaly Detected in 10-Q Item 2:</strong> Regulatory emissions credit revenue accounted for <span class="text-primary font-mono font-medium">$890M</span> (54% of GAAP operating profit in Q2). Operating profit ex-credits reflects continued downward unit cost deceleration.
+                    <strong class="text-[#EDEBE6] font-title-sm">Forensic Anomaly Detected in 10-Q Item 2:</strong>
+                    Regulatory emissions credit revenue accounted for <span
+                      class="text-primary font-mono font-medium">$890M</span> (54% of GAAP operating profit in Q2).
+                    Operating profit ex-credits reflects continued downward unit cost deceleration.
                   </div>
                 </div>
               </div>
@@ -403,12 +454,18 @@
             <div class="px-gutter-desktop py-space-lg border-b border-[#2e3034]">
               <h3 class="font-headline-sm text-headline-sm text-[#EDEBE6] mb-space-sm">Executive Thesis Abstract</h3>
               <p class="font-body-lg text-body-lg text-[#9E9C96] font-normal leading-relaxed text-balance">
-                <span class="float-left text-[2.5rem] leading-none font-semibold text-primary mr-3 pr-1">T</span>he sovereign consensus panel views Tesla through a bifocal lens. In the core passenger automotive vertical, price elasticity has visibly peaked, forcing ASP discounts that dilute hardware gross margins toward traditional OEM parity (14.6% GAAP auto gross margin). Conversely, the Megapack stationary storage division delivers record margin upside (+320 bps sequential), positioning energy infrastructure as the true cash generation bridge while autonomous fleet commercialization navigates NHTSA scrutiny.
+                <span class="float-left text-[2.5rem] leading-none font-semibold text-primary mr-3 pr-1">T</span>he
+                sovereign consensus panel views Tesla through a bifocal lens. In the core passenger automotive vertical,
+                price elasticity has visibly peaked, forcing ASP discounts that dilute hardware gross margins toward
+                traditional OEM parity (14.6% GAAP auto gross margin). Conversely, the Megapack stationary storage
+                division delivers record margin upside (+320 bps sequential), positioning energy infrastructure as the
+                true cash generation bridge while autonomous fleet commercialization navigates NHTSA scrutiny.
               </p>
             </div>
 
             <!-- Tri-Agent Dissection Matrix -->
-            <div class="px-gutter-desktop py-space-lg grid grid-cols-1 md:grid-cols-3 gap-space-lg border-b border-[#2e3034] bg-[#000000]">
+            <div
+              class="px-gutter-desktop py-space-lg grid grid-cols-1 md:grid-cols-3 gap-space-lg border-b border-[#2e3034] bg-[#000000]">
 
               <!-- Agent Alpha -->
               <div class="p-space-md rounded-lg bg-[#1b1c1e] border border-[#2e3034] flex flex-col justify-between">
@@ -416,16 +473,20 @@
                   <div class="flex items-center justify-between mb-space-sm pb-space-xs border-b border-[#2e3034]">
                     <div class="flex items-center gap-1.5">
                       <span class="w-2 h-2 rounded-full bg-primary"></span>
-                      <span class="font-label-sm text-label-sm uppercase tracking-wider text-[#EDEBE6]">Agent Alpha</span>
+                      <span class="font-label-sm text-label-sm uppercase tracking-wider text-[#EDEBE6]">Agent
+                        Alpha</span>
                     </div>
                     <span class="font-label-sm text-label-sm text-[#7C7A75]">DCF &amp; Cash Flow</span>
                   </div>
                   <h4 class="font-title-md text-title-md text-[#EDEBE6] mb-space-xs">Terminal Multiple Compression</h4>
                   <p class="font-body-sm text-body-sm text-[#9E9C96] leading-relaxed">
-                    Base model assumes 11.5% WACC and long-run terminal growth rate of 3.8%. If FSD autonomy take-rate remains below 12% among retail deliveries, terminal fair value anchors at $148.00. CapEx escalations for Dojo/H100 clusters constrain 2025 net free cash flow.
+                    Base model assumes 11.5% WACC and long-run terminal growth rate of 3.8%. If FSD autonomy take-rate
+                    remains below 12% among retail deliveries, terminal fair value anchors at $148.00. CapEx escalations
+                    for Dojo/H100 clusters constrain 2025 net free cash flow.
                   </p>
                 </div>
-                <div class="mt-space-md pt-space-xs border-t border-[#2e3034] flex items-center justify-between text-[#7C7A75] font-label-sm text-label-sm">
+                <div
+                  class="mt-space-md pt-space-xs border-t border-[#2e3034] flex items-center justify-between text-[#7C7A75] font-label-sm text-label-sm">
                   <span>CONFIDENCE: 89%</span>
                   <span class="text-error">BEARISH SKEW</span>
                 </div>
@@ -437,16 +498,20 @@
                   <div class="flex items-center justify-between mb-space-sm pb-space-xs border-b border-[#2e3034]">
                     <div class="flex items-center gap-1.5">
                       <span class="w-2 h-2 rounded-full bg-tertiary"></span>
-                      <span class="font-label-sm text-label-sm uppercase tracking-wider text-[#EDEBE6]">Agent Beta</span>
+                      <span class="font-label-sm text-label-sm uppercase tracking-wider text-[#EDEBE6]">Agent
+                        Beta</span>
                     </div>
                     <span class="font-label-sm text-label-sm text-[#7C7A75]">Forensic Quality</span>
                   </div>
                   <h4 class="font-title-md text-title-md text-[#EDEBE6] mb-space-xs">Finished Goods Inventory Turns</h4>
                   <p class="font-body-sm text-body-sm text-[#9E9C96] leading-relaxed">
-                    Days Sales of Inventory (DSI) expanded to 68 days (+14 days YoY), triggering channel transit buildup in Europe. Offsetting this, warranty reserve accruals remain well-calibrated at 2.4% of revenues with no evidence of deferred capital charges.
+                    Days Sales of Inventory (DSI) expanded to 68 days (+14 days YoY), triggering channel transit buildup
+                    in Europe. Offsetting this, warranty reserve accruals remain well-calibrated at 2.4% of revenues
+                    with no evidence of deferred capital charges.
                   </p>
                 </div>
-                <div class="mt-space-md pt-space-xs border-t border-[#2e3034] flex items-center justify-between text-[#7C7A75] font-label-sm text-label-sm">
+                <div
+                  class="mt-space-md pt-space-xs border-t border-[#2e3034] flex items-center justify-between text-[#7C7A75] font-label-sm text-label-sm">
                   <span>CONFIDENCE: 94%</span>
                   <span class="text-tertiary">NEUTRAL / SOUND</span>
                 </div>
@@ -458,16 +523,21 @@
                   <div class="flex items-center justify-between mb-space-sm pb-space-xs border-b border-[#2e3034]">
                     <div class="flex items-center gap-1.5">
                       <span class="w-2 h-2 rounded-full bg-secondary"></span>
-                      <span class="font-label-sm text-label-sm uppercase tracking-wider text-[#EDEBE6]">Agent Gamma</span>
+                      <span class="font-label-sm text-label-sm uppercase tracking-wider text-[#EDEBE6]">Agent
+                        Gamma</span>
                     </div>
                     <span class="font-label-sm text-label-sm text-[#7C7A75]">Macro &amp; Geopolitics</span>
                   </div>
-                  <h4 class="font-title-md text-title-md text-[#EDEBE6] mb-space-xs">China Moat &amp; EU Tariff Walls</h4>
+                  <h4 class="font-title-md text-title-md text-[#EDEBE6] mb-space-xs">China Moat &amp; EU Tariff Walls
+                  </h4>
                   <p class="font-body-sm text-body-sm text-[#9E9C96] leading-relaxed">
-                    Giga Shanghai delivers peak efficiency, but competition from BYD's DM 5.0 hybrid platform erodes tier-2 city market share. EU provisional duties on China-manufactured EVs add an 8.2% import levy headwind for Model 3 continental imports.
+                    Giga Shanghai delivers peak efficiency, but competition from BYD's DM 5.0 hybrid platform erodes
+                    tier-2 city market share. EU provisional duties on China-manufactured EVs add an 8.2% import levy
+                    headwind for Model 3 continental imports.
                   </p>
                 </div>
-                <div class="mt-space-md pt-space-xs border-t border-[#2e3034] flex items-center justify-between text-[#7C7A75] font-label-sm text-label-sm">
+                <div
+                  class="mt-space-md pt-space-xs border-t border-[#2e3034] flex items-center justify-between text-[#7C7A75] font-label-sm text-label-sm">
                   <span>CONFIDENCE: 82%</span>
                   <span class="text-primary">ELEVATED RISK</span>
                 </div>
@@ -478,12 +548,14 @@
             <div class="px-gutter-desktop py-space-lg">
               <div class="flex items-center justify-between mb-space-md">
                 <h3 class="font-headline-sm text-headline-sm text-[#EDEBE6]">Institutional Metric Scorecard</h3>
-                <span class="font-label-sm text-label-sm text-[#7C7A75]">SOURCE: SEC EDGAR 10-Q &amp; EARNINGS CALL TRANSCRIPT</span>
+                <span class="font-label-sm text-label-sm text-[#7C7A75]">SOURCE: SEC EDGAR 10-Q &amp; EARNINGS CALL
+                  TRANSCRIPT</span>
               </div>
               <div class="overflow-x-auto">
                 <table class="w-full text-left font-body-sm text-body-sm">
                   <thead>
-                    <tr class="border-b border-[#2e3034] font-label-sm text-label-sm text-[#7C7A75] uppercase tracking-wider">
+                    <tr
+                      class="border-b border-[#2e3034] font-label-sm text-label-sm text-[#7C7A75] uppercase tracking-wider">
                       <th class="py-2.5">Indicator / Metric</th>
                       <th class="py-2.5">Consensus Expectation</th>
                       <th class="py-2.5">Boardroom Agent Actual</th>
@@ -514,7 +586,8 @@
                       <td class="py-3 text-right text-primary">84.0%</td>
                     </tr>
                     <tr>
-                      <td class="py-3 font-sans text-[#EDEBE6] font-medium">AI Compute Cluster Spend (CapEx Annualized)</td>
+                      <td class="py-3 font-sans text-[#EDEBE6] font-medium">AI Compute Cluster Spend (CapEx Annualized)
+                      </td>
                       <td class="py-3">$3.2B</td>
                       <td class="py-3 text-[#EDEBE6]">$4.5B</td>
                       <td class="py-3 text-primary">+$1.3B (Aggressive)</td>
@@ -526,8 +599,10 @@
             </div>
 
             <!-- Dossier Footer -->
-            <div class="px-gutter-desktop py-space-md border-t border-[#2e3034] bg-[#1b1c1e] flex flex-wrap items-center justify-between text-[#7C7A75] font-label-sm text-label-sm">
-              <div>HASH: <span class="font-mono text-[#EDEBE6]">0x88F73B90B2384ACDE</span> · VERIFIED BY ZERO-KNOWLEDGE PROOF</div>
+            <div
+              class="px-gutter-desktop py-space-md border-t border-[#2e3034] bg-[#1b1c1e] flex flex-wrap items-center justify-between text-[#7C7A75] font-label-sm text-label-sm">
+              <div>HASH: <span class="font-mono text-[#EDEBE6]">0x88F73B90B2384ACDE</span> · VERIFIED BY ZERO-KNOWLEDGE
+                PROOF</div>
               <div class="flex items-center gap-space-md">
                 <button class="hover:text-[#EDEBE6] transition-colors flex items-center gap-1">
                   <span class="material-symbols-outlined text-[14px]">download</span>
@@ -547,19 +622,28 @@
         <!-- ======================================================
              REPORT FOLLOW-UP CHAT
         ======================================================= -->
-        <div class="follow-up-dock pointer-events-none transition-opacity duration-500 opacity-0" id="docked-search-bar">
+        <div class="follow-up-dock pointer-events-none transition-opacity duration-500 opacity-0"
+          id="docked-search-bar">
           <div class="follow-up-messages pointer-events-auto" id="follow-up-messages" aria-live="polite"></div>
           <div class="follow-up-input pointer-events-auto">
             <div class="flex items-center gap-space-sm flex-1 min-w-0">
               <span class="material-symbols-outlined text-primary text-[20px]">smart_toy</span>
-              <input class="w-full border-0 bg-transparent text-[#EDEBE6] placeholder:text-[#7C7A75] text-body-sm focus:border-0 focus:outline-none focus:ring-0" id="docked-search-input" placeholder="Ask about this report..." type="text">
+              <input
+                class="w-full border-0 bg-transparent text-[#EDEBE6] placeholder:text-[#7C7A75] text-body-sm focus:border-0 focus:outline-none focus:ring-0"
+                id="docked-search-input" placeholder="Ask about this report..." type="text">
             </div>
             <div class="flex items-center gap-2 shrink-0">
               <div class="hidden sm:flex items-center gap-1">
-                <button class="follow-up-btn px-2.5 py-1 rounded-full bg-[#1b1c1e] hover:bg-[#292a2c] border border-[#2e3034] text-[#7C7A75] hover:text-[#EDEBE6] font-label-sm text-label-sm transition-colors">vs. BYD</button>
-                <button class="follow-up-btn px-2.5 py-1 rounded-full bg-[#1b1c1e] hover:bg-[#292a2c] border border-[#2e3034] text-[#7C7A75] hover:text-[#EDEBE6] font-label-sm text-label-sm transition-colors">Energy Margins</button>
+                <button
+                  class="follow-up-btn px-2.5 py-1 rounded-full bg-[#1b1c1e] hover:bg-[#292a2c] border border-[#2e3034] text-[#7C7A75] hover:text-[#EDEBE6] font-label-sm text-label-sm transition-colors">vs.
+                  BYD</button>
+                <button
+                  class="follow-up-btn px-2.5 py-1 rounded-full bg-[#1b1c1e] hover:bg-[#292a2c] border border-[#2e3034] text-[#7C7A75] hover:text-[#EDEBE6] font-label-sm text-label-sm transition-colors">Energy
+                  Margins</button>
               </div>
-              <button class="w-8 h-8 rounded-full bg-primary hover:bg-primary-container text-on-primary flex items-center justify-center transition-transform active:scale-95 shadow" id="docked-submit-btn">
+              <button
+                class="w-8 h-8 rounded-full bg-primary hover:bg-primary-container text-on-primary flex items-center justify-center transition-transform active:scale-95 shadow"
+                id="docked-submit-btn">
                 <span class="material-symbols-outlined text-[18px]">arrow_upward</span>
               </button>
             </div>
@@ -570,14 +654,13 @@
     </main>
   </div>
 
-  <!-- Runtime config: set API origin for deployed environment -->
+
   <script>
-    // Replace the URL below with your actual Render backend URL after deploying the API service
-    window.BOARDROOM_API_URL = "https://boardroom-api.onrender.com";
+    window.BOARDROOM_API_URL = "https://boardroom-production-6584.up.railway.app";
   </script>
 
-  <!-- App Script -->
   <script src="app.js?v=13"></script>
 
 </body>
+
 </html>
